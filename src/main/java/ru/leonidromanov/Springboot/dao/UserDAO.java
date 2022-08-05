@@ -1,12 +1,10 @@
-package ru.leonidromanov.Springboot.service;
+package ru.leonidromanov.Springboot.dao;
 
 import ru.leonidromanov.Springboot.model.User;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional
-public interface UserService {
+public interface UserDAO {
     public List<User> getAllUsers();
     public User getUser(int id);
     public void save(User user);

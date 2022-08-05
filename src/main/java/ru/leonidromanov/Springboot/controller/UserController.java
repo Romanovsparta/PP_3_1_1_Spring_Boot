@@ -1,25 +1,24 @@
 package ru.leonidromanov.Springboot.controller;
 
+import ru.leonidromanov.Springboot.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.leonidromanov.Springboot.model.User;
-import ru.leonidromanov.Springboot.service.UserService;
-
 import java.util.List;
 
 @Controller
 public class UserController {
 
-    private final UserService userService;
+    private UserService us;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserService us) {
+        this.us = us;
     }
 
     @GetMapping
     public String users(Model model) {
-        List<User> users = userService.getAllUsers();
+        List<User> users = us.getAllUsers();
         model.addAttribute("users", users);
         return "users";
     }
@@ -32,25 +31,25 @@ public class UserController {
 
     @PostMapping
     public String create(@ModelAttribute("user") User user) {
-        userService.saveUser(user);
+        us.save(user);
         return "redirect:/";
     }
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("user", userService.getUser(id));
+        model.addAttribute("user", us.getUser(id));
         return "edit";
     }
 
-    @PostMapping("/{id}")
-    public String update(User user) {
-        userService.saveUser(user);
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+        us.update(id, user);
         return "redirect:/";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
-        userService.deleteUser(id);
+        us.delete(id);
         return "redirect:/";
     }
 }
