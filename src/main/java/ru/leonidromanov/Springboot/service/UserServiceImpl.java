@@ -1,11 +1,11 @@
 package ru.leonidromanov.Springboot.service;
 
+import org.springframework.stereotype.Service;
 import ru.leonidromanov.Springboot.dao.UserDAO;
-import org.springframework.stereotype.Component;
 import ru.leonidromanov.Springboot.model.User;
 import java.util.List;
 
-@Component
+@Service
 public class UserServiceImpl implements UserService {
 
     private UserDAO userDAO;

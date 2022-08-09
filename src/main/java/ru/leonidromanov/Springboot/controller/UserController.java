@@ -10,7 +10,7 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    private UserService us;
+    private final UserService us;
 
     public UserController(UserService us) {
         this.us = us;
