@@ -17,6 +17,7 @@
         <th scope="col">Фамилия</th>
         <th scope="col">E-mail</th>
         <th scope="col"></th>
+        <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
@@ -27,10 +28,10 @@
         <td th:text="${user.getEmail()}"></td>
         <td><a th:href="@{/{id}/edit(id=${user.getId()})}">
             <button class="btn btn-primary">Редактировать</button>
-            <form style="display: inline" th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
-                <button class="btn btn-primary">Удалить</button>
-            </form>
         </a></td>
+        <td><form style="display: inline" th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
+            <button class="btn btn-primary">Удалить</button>
+        </form></td>
     </tr>
     </tbody>
 </table>

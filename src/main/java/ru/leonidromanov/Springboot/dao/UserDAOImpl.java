@@ -24,11 +24,8 @@ public class UserDAOImpl implements UserDAO {
         entityManager.persist(user);
     }
 
-    public void update(int id, User upUser) {
-        User userToBeUpdated = getUser(id);
-        userToBeUpdated.setFirstName(upUser.getFirstName());
-        userToBeUpdated.setSurName(upUser.getSurName());
-        userToBeUpdated.setEmail(upUser.getEmail());
+    public void update(User upUser) {
+        entityManager.merge(upUser);
     }
 
     public void delete(int id) {
